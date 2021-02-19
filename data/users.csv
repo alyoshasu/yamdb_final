@@ -1,0 +1,6 @@
+id,username,email,role,description,first_name,last_name,is_active,date_joined
+100,bingobongo,bingobongo@yamdb.fake,user,,,,True,2021-02-08 17:10:30.473561+00:00
+101,capt_obvious,capt_obvious@yamdb.fake,admin,,,,True,2021-02-08 17:10:30.473561+00:00
+102,faust,faust@yamdb.fake,user,,,,True,2021-02-08 17:10:30.473561+00:00
+103,reviewer,reviewer@yamdb.fake,user,,,,True,2021-02-08 17:10:30.473561+00:00
+104,angry,angry@yamdb.fake,moderator,,,,True,2021-02-08 17:10:30.473561+00:00

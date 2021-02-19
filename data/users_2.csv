@@ -1,0 +1,6 @@
+id,password,last_login,is_superuser,first_name,last_name,is_staff,is_active,date_joined,email,role,secret,username,bio
+100,qwerty,2021-02-08 17:10:30.473561+00:00,FALSE,test,test,FALSE,TRUE,2021-02-08 17:10:30.473561+00:00,bingobongo@yamdb.fake,user,12www,bingobongo,qwer
+101,qwerty,2021-02-08 17:10:30.473561+00:00,TRUE,test,test,TRUE,TRUE,2021-02-08 17:10:30.473561+00:00,capt_obvious@yamdb.fake,admin,aeg,capt_obvious,asdf
+102,qwerty,2021-02-08 17:10:30.473561+00:00,FALSE,test,test,FALSE,TRUE,2021-02-08 17:10:30.473561+00:00,faust@yamdb.fake,user,5345y,faust,zxcv
+103,qwerty,2021-02-08 17:10:30.473561+00:00,FALSE,test,test,FALSE,TRUE,2021-02-08 17:10:30.473561+00:00,reviewer@yamdb.fake,user,gdhrdyh,reviewer,poiu
+104,qwerty,2021-02-08 17:10:30.473561+00:00,TRUE,test,test,TRUE,TRUE,2021-02-08 17:10:30.473561+00:00,angry@yamdb.fake,moderator,bgrht,angry,lkjh

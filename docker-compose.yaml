@@ -1,0 +1,36 @@
+version: '3.8'
+
+volumes:
+  postgres_data:
+  static_volume:
+
+services:
+  db:
+    image: postgres:12.4
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+  web:
+#    build: .
+    image: alyoshasu/yamdb:v1.0
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+  nginx:
+    image: nginx
+    volumes:
+      - static:/home/app/web/staticfiles
+    ports:
+      - "8080:80"
+    depends_on:
+      - web
+#    environment:
+#      - NGINX_HOST=foobar.com
+#      - NGINX_PORT=80
