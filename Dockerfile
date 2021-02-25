@@ -1,11 +1,9 @@
-FROM python:3.8.5
+FROM nginx:1.19.6
 
-WORKDIR /code
+#RUN ufw allow 'Nginx Full' && ufw allow OpenSSH && ufw enable && ufw status && systemctl start nginx
 
-COPY requirements.txt /code
+#RUN rm /etc/nginx/sites-enabled/default
 
-RUN pip install -r /requirements.txt
+COPY nginx_default/default /etc/nginx/sites-enabled/
 
-COPY . /code
-
-CMD gunicorn api_yamdb.wsgi:application --bind 0.0.0.0:8000
+#RUN sudo systemctl start nginx
