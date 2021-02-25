@@ -2,7 +2,6 @@ version: '3.8'
 
 volumes:
   postgres_data:
-#  fixtures:
 
 services:
   db:
@@ -14,9 +13,6 @@ services:
   web:
     image: alyoshasu/yamdb:v1.0
     restart: always
-#    command: bash -c "python manage.py collectstatic --noinput && gunicorn api_yamdb.wsgi:application --bind 0.0.0.0:8000"
-#    ports:
-#      - "8000:8000"
     volumes:
       - ./fixtures.json:/code/fixtures.json
     depends_on:
