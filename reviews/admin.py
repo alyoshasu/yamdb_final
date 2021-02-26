@@ -10,7 +10,8 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = ("pk", "text", "pub_date", "author", "title", "score")
     # search_fields = ("text",)
     # list_filter = ("pub_date",)
-    # empty_value_display = "-пусто-" # это свойство сработает для всех колонок: где пусто - там будет эта строка
+    # empty_value_display = "-пусто-"
+    # это свойство сработает для всех колонок: где пусто - там будет эта строка
 
 
 class CommentAdmin(admin.ModelAdmin):
