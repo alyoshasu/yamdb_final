@@ -20,7 +20,7 @@ services:
     env_file:
       - ./.env
   nginx:
-    build: .
+    image: nginx:1.19.6
     ports:
       - "80:80"
     volumes:
