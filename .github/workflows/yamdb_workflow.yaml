@@ -58,8 +58,9 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             sudo docker pull alyoshasu/yamdb_final
-            sudo docker stop $(sudo docker ps -a -q)
-#            sudo docker run --rm -d -p 5000:5000 alyoshasu/yamdb_final
+            # sudo docker stop $(sudo docker ps -a -q)
+            # sudo docker run --rm -d -p 5000:5000 alyoshasu/yamdb_final
+            sudo docker-compose stop
             sudo docker-compose up
 
   send_message:
