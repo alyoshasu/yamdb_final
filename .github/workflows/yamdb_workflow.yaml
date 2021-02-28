@@ -45,22 +45,28 @@ jobs:
           push: true
           tags: alyoshasu/yamdb_final:latest
 
-  deploy:
+  deploy2:
     runs-on: ubuntu-latest
-    needs: build_and_push_to_docker_hub
     steps:
-      - name: executing remote ssh commands to deploy
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }} # если ваш ssh-ключ защищен паролем
-          script: |
-            sudo docker pull alyoshasu/yamdb_final:latest
-            sudo docker stop $(sudo docker ps -a -q)
-            sudo docker run --rm -d -p 80:80 alyoshasu/yamdb_final:latest
+      # Step 1: Checkout
+      - uses: actions/checkout@v2
 
+      # Step 2: Add SSH credentials to your GitHub CI/CD instance
+      - name: Add SSH Credentials
+        uses: shimatoro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }} # required, this will be used when transferring files to your deploy targets
+          known_hosts: ${{ secrets.HOST }} # required, should match up with your deploy targets (see below)
+
+      # Step 3: Deploy!
+      - name: Deploy to Staging
+        uses: JorgenVatle/docker-compose-deploy@v1.0
+        with:
+          deploy_targets: ${{ secrets.HOST }} # required, comma separated list of servers to deploy to.
+
+          ssh_user: ${{ secrets.USER }} # optional, user to connect to deploy targets with. Defaults to 'root'
+          compose_file: 'docker-compose.yaml' # optional, path/filename of your docker-compose file. Defaults to 'docker-compose.yml'
+#          validate_container: 'app' # optional, validate that the given container name is running. Otherwise, throw an error. Defaults to 'app'
 
   send_message:
     runs-on: ubuntu-latest
