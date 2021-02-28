@@ -57,7 +57,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: "docker-compose.yaml"
+          source: "docker-compose.yaml, .env"
           target: "."
 
       - name: executing remote ssh commands to deploy
@@ -67,8 +67,6 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            sudo docker stop $(sudo docker ps -a -q)
-            sudo docker-compose stop
             sudo docker-compose up  --rm -d
 
   send_message:
