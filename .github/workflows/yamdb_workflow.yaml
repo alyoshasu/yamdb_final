@@ -66,12 +66,9 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-#          passphrase: ${{ secrets.PASSPHRASE }} # если ваш ssh-ключ защищен паролем
           script: |
-#            sudo docker pull alyoshasu/yamdb_final:latest
             sudo docker stop $(sudo docker ps -a -q)
             sudo docker-compose stop
-#            sudo docker run --rm -d -p 8000:8000 alyoshasu/yamdb_final:latest
             sudo docker-compose up  --rm -d
 
   send_message:
