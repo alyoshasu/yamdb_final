@@ -18,7 +18,6 @@ services:
     image: alyoshasu/yamdb_final:latest
     restart: always
     volumes:
-      - ./fixtures.json:/code/fixtures.json
       - static_volume:/code/static
       - media_volume:/code/media
       - nginx_config:/code/nginx_default
