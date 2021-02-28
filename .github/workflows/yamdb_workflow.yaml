@@ -60,8 +60,7 @@ jobs:
             sudo docker pull alyoshasu/yamdb_final:latest
             sudo docker stop $(sudo docker ps -a -q)
             sudo docker-compose stop
-            sudo docker run alyoshasu/yamdb_final:latest
-
+            sudo docker run --rm -d -p 8000:8000 alyoshasu/yamdb_final:latest
 
   send_message:
     runs-on: ubuntu-latest
