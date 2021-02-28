@@ -45,7 +45,7 @@ jobs:
           push: true
           tags: alyoshasu/yamdb_final:latest
 
-  deploy2:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       # Step 1: Checkout
