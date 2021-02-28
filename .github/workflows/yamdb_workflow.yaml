@@ -66,7 +66,7 @@ jobs:
         with:
           deploy_targets: ${{ secrets.HOST }} # required, comma separated list of servers to deploy to.
 
-          ssh_user: ${{ secrets.USER }} # optional, user to connect to deploy targets with. Defaults to 'root'
+          ssh_user: 'alyoshasu' # optional, user to connect to deploy targets with. Defaults to 'root'
           compose_file: 'docker-compose.yaml' # optional, path/filename of your docker-compose file. Defaults to 'docker-compose.yml'
 #          validate_container: 'app' # optional, validate that the given container name is running. Otherwise, throw an error. Defaults to 'app'
 
