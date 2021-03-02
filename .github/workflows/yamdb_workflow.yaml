@@ -60,7 +60,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: "docker-compose.yaml"
+          source: "docker-compose.yaml, .env.template"
           target: "."
 
 
