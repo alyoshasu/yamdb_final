@@ -1,6 +1,7 @@
 name: yamdb_final workflow
 
-on: [push]:
+on:
+  push:
     branches:
       - master
 
