@@ -1,6 +1,9 @@
 name: yamdb_final workflow
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   tests:
@@ -57,8 +60,9 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: "docker-compose.yaml, .env"
+          source: "docker-compose.yaml"
           target: "."
+
 
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
@@ -67,6 +71,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            sudo docker-compose stop
             sudo docker-compose up -d
 
   send_message:

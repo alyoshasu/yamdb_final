@@ -13,7 +13,8 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - ./.env
+      - env/.env
+
   web:
     image: alyoshasu/yamdb_final:latest
     restart: always
@@ -24,7 +25,8 @@ services:
     depends_on:
       - db
     env_file:
-      - ./.env
+      - env/.env
+
   nginx:
     image: nginx:1.19.7
     restart: always

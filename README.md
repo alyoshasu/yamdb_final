@@ -2,7 +2,7 @@
 yamdb_final
 
 Адрес проекта:
-https://178.154.248.118
+http://178.154.233.97/redoc/
 
 
 [![yamdb_final workflow](https://github.com/alyoshasu/yamdb_final/workflows/yamdb_workflow/badge.svg?branch=master&event=status)](https://github.com/alyoshasu/yamdb_final/actions/workflows/yamdb_workflow.yaml)
