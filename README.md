@@ -1,35 +1,74 @@
+![yamdb_final workflow](https://github.com/alyoshasu/yamdb_final/actions/workflows/yamdb_workflow.yaml/badge.svg)
+
 # yamdb_final
-yamdb_final
 
 Адрес проекта:
-http://178.154.233.97/redoc/
-
-
-[![yamdb_final workflow](https://github.com/alyoshasu/yamdb_final/workflows/yamdb_workflow/badge.svg?branch=master&event=status)](https://github.com/alyoshasu/yamdb_final/actions/workflows/yamdb_workflow.yaml)
+http://178.154.233.97/
+Документация по API:
+http://127.0.0.1/redoc/
 
 Проект YaMDb собирает отзывы (Review) пользователей на произведения (Title). Произведения делятся на категории: «Книги», «Фильмы», «Музыка». Список категорий (Category) может быть расширен (например, можно добавить категорию «Изобразительное искусство» или «Ювелирка»).
 Сами произведения в YaMDb не хранятся, здесь нельзя посмотреть фильм или послушать музыку.
 В каждой категории есть произведения: книги, фильмы или музыка. Например, в категории «Книги» могут быть произведения «Винни Пух и все-все-все» и «Марсианские хроники», а в категории «Музыка» — песня «Давеча» группы «Насекомые» и вторая сюита Баха. Произведению может быть присвоен жанр из списка предустановленных (например, «Сказка», «Рок» или «Артхаус»). Новые жанры может создавать только администратор.
 Благодарные или возмущённые читатели оставляют к произведениям текстовые отзывы (Review) и выставляют произведению рейтинг (оценку в диапазоне от одного до десяти). Из множества оценок автоматически высчитывается средняя оценка произведения.
 
-## С чего начать
+## Стек
+
+Django 
+Проект сделан по принципу RESTful API при помощи библиотеки Django REST Framework
+База данных: PostgreSQL
+gunicorn
+nginx
+Docker (база данных, web-сервер и nginx-сервер лежат в 3 контейнерах, используя совместные тома памяти)
+
+## Инструкции для деплоя проекта на сервере
 
 Последующие инструкции помогут вам настроить проект
 
-### Миграции
+### 1) Docker
+
+Для того, чтобы развернуть проект на вашем сервере, вам необходимо предварительно установить Docker.
+Инструкция по установке: https://docs.docker.com/engine/install/
+
+### 2) Автодеплой
+
+В 'Actions secrets' в настройках вашего проекта на GitHub внесите необходимые параметры сервера:
+
+DOCKER_PASSWORD # Пароль от DockerHub (для обновления образа на DockerHub)
+DOCKER_USERNAME # Логин от DockerHub (для обновления образа на DockerHub)
+HOST # Публичный ip адрес сервера
+USER # Пользователь сервера
+PASSPHRASE # Если ssh-ключ защищен фразой-паролем
+SSH_KEY # Приватный ssh-ключ
+TELEGRAM_TO # ID телеграм-аккаунта (для оправки уведомления об успешном деплое)
+TELEGRAM_TOKEN # Токен бота (для оправки уведомления об успешном деплое)
+
+После успешного коммита и прохождения тестов ваш проект автоматически будет настроен на сервере, в случае успешного выполнения вы получите уведомление в Telegram.
+
+## При первом деплое
+
+### Миграции    
 
 Запустите следующую команду
 
 ```
-docker-compose exec web python manage.py migrate --noinput
+sudo docker-compose exec web python manage.py migrate --noinput
 ```
 
-### Загрузка тестовых данных
+### Сбор статики
 
 Запустите следующую команду
 
 ```
-docker-compose exec web python manage.py loaddata fixtures.json
+sudo docker-compose exec web python manage.py collectstatic --noinput
+```
+
+### Загрузка тестовых данных (если необходимо)
+
+Запустите следующую команду
+
+```
+sudo docker-compose exec web python manage.py loaddata fixtures.json
 ```
 
 ### Создание суперпользователя
@@ -37,6 +76,6 @@ docker-compose exec web python manage.py loaddata fixtures.json
 Запустите следующую команду
 
 ```
-docker-compose exec web python manage.py createsuperuser
+sudo docker-compose exec web python manage.py createsuperuser
 ```
 
