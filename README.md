@@ -14,13 +14,13 @@ http://127.0.0.1/redoc/
 
 ## Стек
 
-###Django + Django REST Framework
+### Django + Django REST Framework
 Проект сделан по принципу RESTful API при помощи библиотеки Django REST Framework. Лежит в отдельном контейнере и работает под web-сервером gunicorn
-###PostgreSQL
+### PostgreSQL
 База данных лежит в отдельном контейнере
-###nginx
+### nginx
 Сервер работает в отдельном контейнере
-###Docker
+### Docker
 При помощи docker-compose происходит распаковка трёх контейнеров: база данных, web-сервер и nginx-сервер. Используются совместные тома памяти.
 
 
